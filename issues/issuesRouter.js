@@ -10,6 +10,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const issues = await db("issues as i").select(
+      "i.id",
       "i.name",
       "i.category",
       "i.username",

@@ -27,4 +27,22 @@ describe("userModel.js", () => {
       expect(user.username).toBe("Adam");
     });
   });
+
+  describe("find", () => {
+    afterEach(async () => {
+      await db("users").truncate();
+    });
+
+    it("should find all users in the database", async () => {
+      let user = await Users.add({
+        username: "Disney",
+        password: "password",
+        authLevel: "Admin"
+      });
+      expect(user.username).toBe("Disney");
+
+      const games = await Users.find();
+      expect(games).toHaveLength(1);
+    });
+  });
 });

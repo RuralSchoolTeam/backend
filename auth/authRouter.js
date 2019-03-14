@@ -32,7 +32,7 @@ router.post("/login", (req, res) => {
         const token = tokenService.generateToken(user);
         res
           .status(200)
-          .json({ message: "User successfully logged in.", token });
+          .json({ message: "User successfully logged in.", token, user });
       } else {
         res
           .status(401)

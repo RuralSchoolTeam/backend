@@ -6,8 +6,8 @@ const restricted = require("../auth/restrictedMiddleware.js");
 const router = express.Router();
 
 // Get all issues
-router.get("/", async, restricted, (req, res) => {
-// router.get("/", async (req, res) => {
+// router.get("/", async, restricted, (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const issues = await db("issues as i").select(
       "i.id",
@@ -29,8 +29,8 @@ router.get("/", async, restricted, (req, res) => {
 });
 
 // Get issue by id
-router.get("/:id", async, restricted, (req, res) => {
-// router.get("/:id", async (req, res) => {
+// router.get("/:id", async, restricted, (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const issue = await db("issues as i")
       .select(
@@ -60,8 +60,8 @@ router.get("/:id", async, restricted, (req, res) => {
 });
 
 // Create new issue
-router.post("/", async, restricted, (req, res) => {
-// router.post("/", async (req, res) => {
+// router.post("/", async, restricted, (req, res) => {
+router.post("/", async (req, res) => {
   if (
     !req.body.name ||
     !req.body.category ||
@@ -90,8 +90,8 @@ router.post("/", async, restricted, (req, res) => {
 });
 
 // Update existing issue
-router.put("/:id", async, restricted, (req, res) => {
-// router.put("/:id", async (req, res) => {
+// router.put("/:id", async, restricted, (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const count = await db("issues")
       .where({ id: req.params.id })
@@ -118,8 +118,8 @@ router.put("/:id", async, restricted, (req, res) => {
 });
 
 // Delete existing issue
-router.delete("/:id", async, restricted, (req, res) => {
-// router.delete("/:id", async (req, res) => {
+// router.delete("/:id", async, restricted, (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const count = await db("issues")
       .where({ id: req.params.id })
